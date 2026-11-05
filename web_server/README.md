@@ -1,3 +1,3 @@
-# web_server
+# Web Server
 
-- `0-transfer_file`: Bash script that transfers a file to a server using scp.
+This directory contains files about setting up a web server and a domain name.
