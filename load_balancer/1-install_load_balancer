@@ -1,0 +1,32 @@
+#!/usr/bin/env bash
+# Installs and configures HAProxy on a new Ubuntu machine to load balance
+# traffic between web-01 and web-02 using the roundrobin algorithm.
+
+STUDENT_ID="YOUR_STUDENT_ID"
+WEB01_IP="WEB01_IP_HERE"
+WEB02_IP="WEB02_IP_HERE"
+
+apt-get -y update
+apt-get -y install haproxy
+
+# Allow HAProxy to be managed by its init script
+echo "ENABLED=1" > /etc/default/haproxy
+
+# Add frontend/backend config only once
+if ! grep -q "backend web_servers" /etc/haproxy/haproxy.cfg; then
+cat >> /etc/haproxy/haproxy.cfg << EOF
+
+frontend http_front
+    bind *:80
+    mode http
+    default_backend web_servers
+
+backend web_servers
+    mode http
+    balance roundrobin
+    server ${STUDENT_ID}-web-01 ${WEB01_IP}:80 check
+    server ${STUDENT_ID}-web-02 ${WEB02_IP}:80 check
+EOF
+fi
+
+service haproxy restart
