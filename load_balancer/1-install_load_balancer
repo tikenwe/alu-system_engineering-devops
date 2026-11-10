@@ -2,9 +2,9 @@
 # Installs and configures HAProxy on a new Ubuntu machine to load balance
 # traffic between web-01 and web-02 using the roundrobin algorithm.
 
-STUDENT_ID="your_student_id"
-WEB01_IP="web01_ip"
-WEB02_IP="web02_ip"
+STUDENT_ID="7290"
+WEB01_IP="18.169.188.227"
+WEB02_IP="3.8.237.116"
 
 apt-get -y update
 apt-get -y install haproxy
