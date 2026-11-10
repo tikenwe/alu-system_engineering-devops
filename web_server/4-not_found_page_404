@@ -8,7 +8,7 @@ fi
 $SUDO apt-get update -y
 $SUDO apt-get install -y nginx
 
-echo "Hello World!" | $SUDO tee /var/www/html/index.html > /dev/null
+echo "Holberton School for the win!" | $SUDO tee /var/www/html/index.html > /dev/null
 echo "Ceci n'est pas une page" | $SUDO tee /var/www/html/404.html > /dev/null
 
 if ! grep -q "location /redirect_me" /etc/nginx/sites-available/default; then
